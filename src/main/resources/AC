@@ -6,6 +6,17 @@ usernames:
 - problem_user
 - performance_glitch_user
 
+
+E2E test
+1. Log into site
+2. Add 2 products
+3. remove 1
+4. go to cart -> check price and products
+5  click on Continue
+6. Fill all required fields
+7. Click on Continue -> check price and products
+8. Click on finish
+
 Authorization part
 1. Log into https://www.saucedemo.com/ with usernames with password:
 - Log into site -> log out  for each
@@ -13,7 +24,7 @@ Authorization part
 3. Log in with correct username and wrong password
 4. log in site with upper case username 1 + password
 
-Products E2E test
+Products + cart workflow
 1. Add to cart 1 product -> verify remove button is dispalayed -> click on chart, verify that the product displayed,
 check price
 2. Add to cart 3 products -> verify remove button is displayed -> click on chart, verify that 3 products are displayed,check price, check total price
@@ -21,10 +32,10 @@ check price
 4. Remove 1 product -> verify Add ro chart button is displayed -> click on chart, verify that 2 products are displayed,check price, check total price
 5. Click on Checkout -> verify that all fields are required 3 validations are displayed
 6. Input first name -> 2 validations are displayed
-7.  Input Last name -> 1 validation is displayed
+7. Input Last name -> 1 validation is displayed
 8. Input postal code -> click continue -> verify that 2 correct products, total price are displayed
 9. Cancel transaction -> user redirected back to main page, products from chart is not removed
-10. click on chart -> checkout -> fill data -> continue -> veirfy products, total price -> click on Finish -> verify message -> click back Home
+10. click on chart -> checkout -> fill data -> continue -> verify products, total price -> click on Finish -> verify message -> click back Home
 
 
 Burger
