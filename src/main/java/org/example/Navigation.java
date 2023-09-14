@@ -36,6 +36,8 @@ public class Navigation {
         assert true;
         // Assert.isTrue(title == "Swag Labs", "page is not opened");
     }
+
+    //loigin
     public void logIntoShopWithUserNameAndPassword(String username, String password){
          driver.findElement(By.xpath(USERNAME_XPATH)).sendKeys(username);
          driver.findElement(By.xpath(PASSWORD_XPATH)).sendKeys(password);
@@ -44,6 +46,7 @@ public class Navigation {
          assert true;
     }
 
+    //main page
        public void clickOnAddToCartButtonForItem(String itemName){
         driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_XPATH1, itemName))).click();
         boolean result = driver.findElement(By.xpath(String.format(REMOVE_BUTTON_XPATH, itemName))).isDisplayed();
@@ -55,15 +58,14 @@ public class Navigation {
         boolean result = driver.findElement(By.xpath(String.format(ADD_TO_CART_BUTTON_XPATH1, itemName))).isDisplayed();
     }
 
-
-    public Double returnItemPrice(String itemName) {
+      public Double returnItemPrice(String itemName) {
         String priceString = driver.findElement(By.xpath(String.format(PRICE_XPATH, itemName))).getText();
         Double price = extractDouble2(priceString);
         return price;
     }
 
 
-    static Double extractDouble2(String str)
+        static Double extractDouble2(String str)
     {
         Double price = Double.valueOf(0);
         str = str.replaceAll("[^0-9]", " ");
@@ -76,5 +78,19 @@ public class Navigation {
         return price;
     }
 
-    
+    public void clickOnCart (){
+        driver.findElement(By.className("shopping_cart_container")).click();
+    }
+
+    public Integer getCartValue (){
+        return Integer.parseInt(driver.findElement(By.className("shopping_cart_badge")).getText());
+    }
+
+    //cart page
+       public void verifyThatProductIsDisplayedInCart(){
+           driver.findElement()
+       }
+
+
+
 }
