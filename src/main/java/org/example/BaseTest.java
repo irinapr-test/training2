@@ -20,12 +20,13 @@ public class BaseTest {
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Iryna.Prankevich/Documents/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:/JAVA/driver/`1/chromedriver-win64chromedriver.exe");
        options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver1 = new ChromeDriver(options);
         wait = new WebDriverWait(driver1, Duration.ofSeconds(2));
         driver1.manage().window().maximize();
+        driver1.get(URL);
     }
 
     @AfterClass

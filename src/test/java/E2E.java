@@ -11,25 +11,20 @@ import org.testng.annotations.Test;
 
 public class E2E extends BaseTest {
      private Navigation navigation;
-    private MainPage mainPage;
-    private CartPage cartPage;
-    private BurgerMenu burgerMenu;
 
 
 
     @BeforeTest()
     public void setup1() {
         navigation = new Navigation();
-        mainPage = new MainPage();
-        cartPage = new CartPage();
-        burgerMenu= new BurgerMenu();
-  }
+     }
 
     @Test
     public void E2E() {
         //navigate to url
 
      //verify Ui elements
+
        navigation.verifyUIElementsOnLoginPage();
 //
 //       //input 1st username and valid password
