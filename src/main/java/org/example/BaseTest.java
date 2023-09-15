@@ -16,17 +16,13 @@ public class BaseTest {
     public static String URL = "https://www.saucedemo.com/";
 
     protected static WebDriver driver1;
-    public static WebDriverWait wait;
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", "D:/JAVA/driver/`1/chromedriver-win64chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:/JAVA/driver/`1/chromedriver-win64/chromedriver.exe");
        options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver1 = new ChromeDriver(options);
-        wait = new WebDriverWait(driver1, Duration.ofSeconds(2));
-        driver1.manage().window().maximize();
-        driver1.get(URL);
     }
 
     @AfterClass

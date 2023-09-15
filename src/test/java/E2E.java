@@ -24,7 +24,7 @@ public class E2E extends BaseTest {
         //navigate to url
 
      //verify Ui elements
-
+        driver1.get(URL);
        navigation.verifyUIElementsOnLoginPage();
 //
 //       //input 1st username and valid password
