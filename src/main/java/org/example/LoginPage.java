@@ -8,8 +8,8 @@ public class LoginPage extends BasePage {
 
     private By logo = By.cssSelector("div[class='login_logo']");
     private By loginForm = By.className("form_column");
-    private By usernameField = By.xpath("//input[@placeholder='Username']");
-    private By passwordField = By.xpath("//input[@placeholder='Password']");
+    private By usernameField = By.name("user-name");
+    private By passwordField = By.name("password");
     private By loginButton = By.xpath("//input[@data-test='login-button']");
     private By login_credentials = By.id("login_credentials");
     private By login_password = By.className("login_password");
@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
 
     public void logIntoShopWithUserNameAndPassword(String username, String password){
         setUserName(username);
-        setUserName(password);
+        setPassword(password);
         driver.findElement(loginButton).click();
     }
 

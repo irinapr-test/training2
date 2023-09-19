@@ -1,26 +1,33 @@
 
 import org.example.BasePage;
+import org.example.BaseTest;
+import org.example.LoginPage;
+import org.example.MainProductsPage;
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class E2E {
+
+public class E2E extends BaseTest {
   //public static
-    private BasePage navigation;
 
-  @BeforeTest()
-  private void setup() {
-  //  navigation = new BasePage();
-  }
-
+//    @BeforeClass()
+//    private void setup() {
+//        loginPage = new LoginPage(driver);
+//    }
     @Test
     public void E2E() {
-        //navigate to url
-//        navigation.navigateToShop();
-//       //verify Ui elements
-//        navigation.verifyUIElementsOnLoginPage();
-//
+        loginPage.verifyUIElementsOnLoginPage();
+        MainProductsPage mainPage = loginPage.logInWith("standard_user", "secret_sauce");
+        mainPage.
+
+
+
+
+
+
 //       //input 1st username and valid password
 //        navigation.logIntoShopWithUserNameAndPassword("standard_user", "secret_sauce");
 //        //verify UI elements

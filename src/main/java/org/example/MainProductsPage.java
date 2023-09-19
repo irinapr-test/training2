@@ -18,6 +18,10 @@ public class MainProductsPage extends BasePage {
         super(driver);
     }
 
+
+    public void verifyMainProductsPageUiElements(){
+
+    }
     public Boolean isProductDisplayed(String productName){
             return isDisplayed(By.xpath(String.format(PRODUCT_XPATH, productName)));
     }

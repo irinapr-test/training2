@@ -1,29 +1,37 @@
 package org.example;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 
 public class BaseTest {
 
-    private final String URL = "https://www.saucedemo.com/";
-    WebDriver driver;
+    private static final String SHOP_URL = "https://www.saucedemo.com/";
+
+    public static ChromeOptions options;
+    public static WebDriver driver;
+    protected LoginPage loginPage;
 
     @BeforeClass
-    static void setUp() {
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:/Users/Iryna.Prankevich/Documents/chromedriver.exe");
-       // WebDriverManager.chromedriver().setup();
-        //driver = new ChromeDriver();
-       // driver.get("URL");
+        options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        driver.get(SHOP_URL);
+
+        loginPage = new LoginPage(driver);
     }
 
-   // @AfterClass
- //   static void quitBrowser() {
-      //  driver.quit();
-  //  }
-    //  System.setProperty("webdriver.chrome.driver", "C:/Users/Iryna.Prankevich/Documents/chromedriver.exe");
-    //        options = new ChromeOptions();
-    //        options.addArguments("--remote-allow-origins=*");
-    //        driver = new ChromeDriver(options);
+   @AfterClass
+     static void quitBrowser() {
+       driver.close();
+       driver.quit();
+
+   }
+
 }
 

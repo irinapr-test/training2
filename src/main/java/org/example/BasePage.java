@@ -11,9 +11,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
-public class BasePage {
-    public ChromeOptions options;
-    public WebDriver driver;
+public abstract class BasePage {
+    protected WebDriver driver;
 
     private By shopping_cart_container = By.className("shopping_cart_container");
     private By burgerMenuButton = By.id("react-burger-menu-btn");
@@ -26,7 +25,8 @@ public class BasePage {
         return driver.findElement(locator);
     }
 
-      protected void click (By locator){
+    protected void click (By locator){
+        find(locator).isDisplayed();
         find(locator).click();
     }
     protected boolean isDisplayed (By locator){
@@ -39,16 +39,19 @@ public class BasePage {
     }
 
     protected void type(String text, By locator){
+        find(locator).isDisplayed();
         find(locator).clear();
         find(locator).sendKeys(text);
     }
 
-    public CartPage clickOnCart(){
+    protected CartPage clickOnCart(){
+        find(shopping_cart_container).isDisplayed();
         click(shopping_cart_container);
         return new CartPage(driver);
     }
 
-    public BurgerMenu clickOnBurgerMenu()  {
+    protected BurgerMenu clickOnBurgerMenu()  {
+        find(burgerMenuButton).isDisplayed();
         click(burgerMenuButton);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         return new BurgerMenu(driver);
