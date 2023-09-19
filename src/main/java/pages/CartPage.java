@@ -1,13 +1,13 @@
-package org.example;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.Utils;
 
-import static org.example.MainProductsPage.extractDouble2;
 
 public class CartPage extends BasePage{
-    private MainProductsPage mainPage;
+    private Utils utils;
 
     private By continueShoppingButton = By.id("continue-shopping");
     private By checkoutButton = By.id("checkout");
@@ -20,7 +20,6 @@ public class CartPage extends BasePage{
     }
 
 
-
     public void verifyThatProductIsDisplayedInCart(String itemName, String quantity, String price){
             isDisplayed(By.xpath(String.format(CART_ITEM_NAME_XPATH, itemName)));
            String itemPrice = returnItemPriceOnCart(itemName).toString();
@@ -30,7 +29,7 @@ public class CartPage extends BasePage{
 
     public Double returnItemPriceOnCart(String itemName) {
         String priceString = driver.findElement(By.xpath(String.format(PRICE_XPATH_ON_CART, itemName))).getText();
-        Double price =  extractDouble2(priceString);
+        Double price =  utils.extractDouble(priceString);
         return price;
     }
 

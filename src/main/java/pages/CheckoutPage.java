@@ -1,14 +1,13 @@
-package org.example;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.Utils;
 
-import java.time.Duration;
-
-import static org.example.MainProductsPage.extractDouble2;
 
 public class CheckoutPage extends BasePage{
+    private Utils utils;
 
     private By cancelButton = By.id("cancel");
     private By continueButton = By.id("continue");
@@ -42,6 +41,7 @@ public class CheckoutPage extends BasePage{
 
     public void addUserInfoAndContinue(String firstName, String lastName, String zipCode){
         type(firstName, firstNameField);
+
         type(lastName, lastNameField);
         type(zipCode, codeField);
         click(continueButton);
@@ -70,15 +70,15 @@ public class CheckoutPage extends BasePage{
 
     public void verifyItemTotal(String expectedItemTotal){
         String priceString = find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH,"Item total:"))).getText();
-        Double price = extractDouble2(priceString);
+        Double price = utils.extractDouble(priceString);
         Assert.assertEquals(expectedItemTotal, price.toString());
     }
 
         public void verifyTotalPrice(Double expectedItemTotal){
         String getActualTotal =find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH,"Total:"))).getText();
-        Double actualTotal = extractDouble2(getActualTotal);
+        Double actualTotal = utils.extractDouble(getActualTotal);
         String getActualTax= find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH,"Tax: "))).getText();
-        Double taxprice = extractDouble2(getActualTax);
+        Double taxprice = utils.extractDouble(getActualTax);
         Assert.assertEquals(taxprice + expectedItemTotal, actualTotal);
     }
 

@@ -7,7 +7,7 @@ usernames:
 - performance_glitch_user
 
 
-E2E test
+test.E2E test
 1. Log into site
 2. Add 2 products
 3. remove 1

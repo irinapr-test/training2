@@ -1,4 +1,4 @@
-package org.example;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,13 +36,17 @@ public abstract class BasePage {
         }
     }
 
-    protected void type(String text, By locator){
+    protected void type(String text, By locator) {
         find(locator).isDisplayed();
         find(locator).clear();
         find(locator).sendKeys(text);
     }
 
+    protected void clearField(By locator) {
+        find(locator).isDisplayed();
+        find(locator).clear();
 
+    }
 
 
 }

@@ -1,4 +1,4 @@
-package org.example;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     private By loginButton = By.xpath("//input[@data-test='login-button']");
     private By login_credentials = By.id("login_credentials");
     private By login_password = By.className("login_password");
-    private By errorMessage = By.cssSelector("h3[@data-test='error']");
+    private By errorMessage = By.xpath("//h3[@data-test='error']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -33,6 +33,9 @@ public class LoginPage extends BasePage {
         type(username, usernameField);
     }
 
+    public void clearUsername (){clearField(usernameField);}
+
+    public void clearPassword (){clearField(passwordField);}
     public void setPassword(String password){
         type(password, passwordField);
     }
@@ -56,6 +59,10 @@ public class LoginPage extends BasePage {
 
     public String getErrorMessageForLogIn(){
         return find(errorMessage).getText();
+    }
+
+    public void closeErrorMessage(){
+        click(By.className("error-button"));
     }
 
 }

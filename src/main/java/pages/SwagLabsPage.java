@@ -1,4 +1,4 @@
-package org.example;
+package pages;
 
 public class SwagLabsPage {
 
