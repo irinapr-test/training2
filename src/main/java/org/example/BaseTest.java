@@ -29,7 +29,6 @@ public class BaseTest {
    @AfterClass
      static void quitBrowser() {
        driver.close();
-       driver.quit();
 
    }
 

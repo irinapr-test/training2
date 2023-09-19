@@ -19,9 +19,7 @@ public class CartPage extends BasePage{
         super(driver);
     }
 
-    public void verifyCartBadge(String expectedQuantity){
-        Assert.assertTrue(mainPage.getCartValue().equals(expectedQuantity));
-    }
+
 
     public void verifyThatProductIsDisplayedInCart(String itemName, String quantity, String price){
             isDisplayed(By.xpath(String.format(CART_ITEM_NAME_XPATH, itemName)));
@@ -57,6 +55,7 @@ public class CartPage extends BasePage{
         Assert.assertTrue(find(checkoutButton).isDisplayed());
         Assert.assertTrue(find(continueShoppingButton).isDisplayed());
     }
+
 
 
 }

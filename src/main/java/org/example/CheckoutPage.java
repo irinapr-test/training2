@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import java.time.Duration;
+
 import static org.example.MainProductsPage.extractDouble2;
 
 public class CheckoutPage extends BasePage{
@@ -15,8 +17,10 @@ public class CheckoutPage extends BasePage{
     private By lastNameField = By.name("lastName");
     private By codeField = By.name("postalCode");
     private By errorMessage = By.cssSelector("h3[@data-test='error']");
+    private By backToProducts =  By.name("back-to-products") ;
 
-
+    private static final String CART_ITEM_NAME_XPATH = "//div[@class='inventory_item_name' and text()='%s']";
+    private static final String CART_ITEM_QUANTITY_XPATH = "//div[@class='inventory_item_name' and text()='%s']/ancestor::div[@class='cart_item']/descendant::div[@class='cart_quantity']";
     private static final String SUMMARY_INFO_ITEM_XPATH= "//div[contains(text(),'%s')]";
 
 
@@ -36,7 +40,7 @@ public class CheckoutPage extends BasePage{
         Assert.assertTrue(find(cancelButton).isDisplayed());
     }
 
-    public void addUserInfo(String firstName, String lastName, String zipCode){
+    public void addUserInfoAndContinue(String firstName, String lastName, String zipCode){
         type(firstName, firstNameField);
         type(lastName, lastNameField);
         type(zipCode, codeField);
@@ -82,6 +86,13 @@ public class CheckoutPage extends BasePage{
     public void clickOnFinishButton(){
         click(finishButton);
     }
+    public void clickOnCancelButton(){
+        click(cancelButton);
+    }
+    public void clickOnBackToProductsButton(){
+        click(backToProducts);
+    }
+
 
     public void verifyUIElementsOnFinishPage(){
         Assert.assertTrue(find(By.className("app_logo")).getText().equals("Swag Labs"));
@@ -91,6 +102,10 @@ public class CheckoutPage extends BasePage{
         Assert.assertTrue(find(By.name("back-to-products")).isDisplayed());
     }
 
+    public void verifyThatProductIsDisplayedInCart(String itemName, String quantity){
+        isDisplayed(By.xpath(String.format(CART_ITEM_NAME_XPATH, itemName)));
+        Assert.assertTrue(find(By.xpath(String.format(CART_ITEM_QUANTITY_XPATH, itemName))).getText().equals(quantity));
+    }
 
 
 }

@@ -50,7 +50,7 @@ public class LoginPage extends BasePage {
 
     public MainProductsPage logInWith(String username, String password){
         setUserName(username);
-        setUserName(password);
+        setPassword(password);
         return clickOnLoginButton();
     }
 
