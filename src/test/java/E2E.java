@@ -8,12 +8,7 @@ import org.testng.annotations.Test;
 
 
 public class E2E extends BaseTest {
-  //public static
 
-//    @BeforeClass()
-//    private void setup() {
-//        loginPage = new LoginPage(driver);
-//    }
     @Test
     public void E2E() {
         loginPage.verifyUIElementsOnLoginPage();
