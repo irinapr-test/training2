@@ -1,12 +1,6 @@
 package org.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-public class SwagLabsPage extends Navigation {
+public class SwagLabsPage {
 
    private static final String ADD_TO_CART_BUTTON_XPATH1 = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Add to cart')]";
 
@@ -14,8 +8,8 @@ public class SwagLabsPage extends Navigation {
 
 
 
-    public SwagLabsPage() {
-    }
+    //public SwagLabsPage() {
+   // }
 //    public void clickOnAddToCartForItem(String itemName){
 //       String  xpath = String.format(ADD_TO_CART_BUTTON_XPATH1, itemName);
 //        System.out.println(xpath);
