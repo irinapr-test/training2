@@ -7,8 +7,15 @@ import pages.*;
 
 public class E2E extends BaseTest {
 
+    private final String PRODUCT_NAME_1 = "Sauce Labs Backpack";
+    private final String PRODUCT_PRICE_1 = "29.99";
+    private final String PRODUCT_PRICE_2 = "9.99";
+    private final String PRODUCT_NAME_2 = "Sauce Labs Bike Light";
+    private final String PRODUCT_NAME_3 = "Sauce Labs Bolt T-Shirt";
+
     @Test
-    public void E2E() {
+       public void E2E() {
+
         //verify login page elements
         loginPage.verifyUIElementsOnLoginPage();
 
@@ -17,28 +24,41 @@ public class E2E extends BaseTest {
         //verify main products page elements
         mainPage.verifyMainProductsPageUiElements();
 
-        //add 3 items to cart
-        mainPage.clickOnAddToCartButtonForItem("Sauce Labs Backpack");
-        mainPage.clickOnAddToCartButtonForItem("Sauce Labs Bike Light");
-        mainPage.clickOnAddToCartButtonForItem("Sauce Labs Bolt T-Shirt");
+        //click on product item
+        ProductPage productPage = mainPage.clickOnProduct(PRODUCT_NAME_1);
+        //verify product is displayed
+        productPage.verifyProductPageUiElements(PRODUCT_NAME_1);
+        //click on Add to cart and verify that remove button is displayed
+        productPage.clickOnAddToCart();
+        //click on Remove and verify that Add to cart  button is displayed
+        productPage.clickOnRemove();
+        //click on Add to cart
+        productPage.clickOnAddToCart();
+        //click on back to products
+        productPage.clickOnBackToProducts();
+
+        //verify cart value
+        mainPage.verifyCartBadge("1");
+        mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_2);
+        mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_3);
         //verify cart value
         mainPage.verifyCartBadge("3");
         //remove one item
-        mainPage.clickOnRemoveButtonForItem("Sauce Labs Bolt T-Shirt");
+        mainPage.clickOnRemoveButtonForItem(PRODUCT_NAME_3);
         //verify cart value
         mainPage.verifyCartBadge("2");
 
         //get selected items price
-        Double price1 = mainPage.getProductPrice("Sauce Labs Backpack");
-        Double price2 = mainPage.getProductPrice("Sauce Labs Bike Light");
+        Double price1 = mainPage.getProductPrice(PRODUCT_NAME_1);
+        Double price2 = mainPage.getProductPrice(PRODUCT_NAME_2);
         Double sum = price1 + price2;
 
         //go to cart
         CartPage cartPage = mainPage.clickOnCart();
         //verify ui elements and selected products
         cartPage.verifyUIElementsOnCartPage();
-        cartPage.verifyThatProductIsDisplayedInCart("Sauce Labs Backpack", "1", "29.99");
-        cartPage.verifyThatProductIsDisplayedInCart("Sauce Labs Bike Light", "1", "9.99");
+        cartPage.verifyThatProductIsDisplayedInCart(PRODUCT_NAME_1, "1", PRODUCT_PRICE_1 );
+        cartPage.verifyThatProductIsDisplayedInCart(PRODUCT_NAME_2, "1", PRODUCT_PRICE_2);
 
         //verify that Continue Shopping Button redirects to main page
         cartPage.clickOnContinueShoppingButton();
@@ -61,8 +81,8 @@ public class E2E extends BaseTest {
         checkoutPage.verifyUIElementsOnCheckoutOverView();
 
          //verify that selected products and the Total: price
-        checkoutPage.verifyThatProductIsDisplayedInCart("Sauce Labs Backpack", "1");
-        checkoutPage.verifyThatProductIsDisplayedInCart("Sauce Labs Bike Light", "1");
+        checkoutPage.verifyThatProductIsDisplayedInCart(PRODUCT_NAME_1, "1");
+        checkoutPage.verifyThatProductIsDisplayedInCart(PRODUCT_NAME_2, "1");
         checkoutPage.verifyTotalPrice(sum);
 
         //click on finish button and verify finish prompt

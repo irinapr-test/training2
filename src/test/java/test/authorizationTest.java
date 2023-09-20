@@ -64,7 +64,6 @@ public class authorizationTest extends BaseTest {
         loginPage.getErrorMessageForLogIn();
         Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Sorry, this user has been locked out.");
 
-
     }
 
 

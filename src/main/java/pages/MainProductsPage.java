@@ -15,7 +15,9 @@ public class MainProductsPage extends BasePage {
     private static final String ADD_TO_CART_BUTTON_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Add to cart')]";
     private static final String REMOVE_BUTTON_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Remove')]";
     private static final String PRICE_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::div[@class='inventory_item_price']";
-   private By shopping_cart_container = By.className("shopping_cart_container");
+    private static final String PRODUCT_LINK_XPATH = "//div[contains(text(),'%s')]/ancestor::a[@id='item_4_title_link']";
+
+    private By shopping_cart_container = By.className("shopping_cart_container");
 
     private By burgerMenuButton = By.id("react-burger-menu-btn");
 
@@ -29,7 +31,7 @@ public class MainProductsPage extends BasePage {
         Assert.assertTrue(find(By.className("title")).getText().equals("Products"));
         Assert.assertTrue(find(By.id("react-burger-menu-btn")).isDisplayed());
         Assert.assertTrue(find(By.className("shopping_cart_container")).isDisplayed());
-       Assert.assertTrue(find(By.className("product_sort_container")).isDisplayed());
+        Assert.assertTrue(find(By.className("product_sort_container")).isDisplayed());
     }
 
     public Boolean isProductDisplayed(String productName){
@@ -72,9 +74,14 @@ public class MainProductsPage extends BasePage {
         return new BurgerMenu(driver);
     }
 
-
     public void logout (){
         BurgerMenu burgerMenu = clickOnBurgerMenu();
         burgerMenu.clickOnLogoutButton();
+    }
+
+    public ProductPage clickOnProduct (String productName){
+        find(By.xpath(String.format(PRODUCT_LINK_XPATH,productName))).isDisplayed();
+        click(By.xpath(String.format(PRODUCT_LINK_XPATH,productName)));
+        return new ProductPage(driver);
     }
 }
