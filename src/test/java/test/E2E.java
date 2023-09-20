@@ -37,6 +37,7 @@ public class E2E extends BaseTest {
         //click on back to products
         productPage.clickOnBackToProducts();
 
+
         //verify cart value
         mainPage.verifyCartBadge("1");
         mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_2);
