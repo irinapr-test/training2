@@ -3,10 +3,9 @@ package test;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BaseTest;
-import pages.BurgerMenu;
 import pages.MainProductsPage;
 
-public class authorizationTest extends BaseTest {
+public class AuthorizationTest extends BaseTest {
     public final String USERNAME1 = "standard_user";
     public final String USERNAME2 = "locked_out_user";
 
@@ -45,7 +44,7 @@ public class authorizationTest extends BaseTest {
         Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Password is required");
 
         //login with valid username and not valid password
-        loginPage.logInWith(USERNAME1, "RANDOM" );
+        loginPage.logInWith(USERNAME1, "RANDOM");
         loginPage.getErrorMessageForLogIn();
         Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Username and password do not match any user in this service", "error is not displayed");
 

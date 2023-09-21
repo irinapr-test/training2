@@ -24,11 +24,14 @@ public class BaseTest {
         driver.get(SHOP_URL);
 
         loginPage = new LoginPage(driver);
+        System.out.println("the shop page is opened " + SHOP_URL);
+
     }
 
    @AfterClass
      static void quitBrowser() {
         driver.quit();
+       System.out.println("test has been executed");
    }
 
 }
