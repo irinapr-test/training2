@@ -4,7 +4,7 @@ package test;
 import org.testng.annotations.Test;
 import pages.*;
 
-
+//TODO all tests should have Test at the end
 public class E2E extends BaseTest {
 
     private final String PRODUCT_NAME_1 = "Sauce Labs Backpack";
@@ -16,6 +16,7 @@ public class E2E extends BaseTest {
     @Test
        public void E2E() {
 
+        //TODO let's remove all the commented lines and implement a logger, like log4j, and log that instead.
         //verify login page elements
         loginPage.verifyUIElementsOnLoginPage();
 
