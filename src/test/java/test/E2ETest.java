@@ -33,7 +33,7 @@ public class E2ETest extends BaseTest {
         ProductPage productPage = mainPage.clickOnProduct(PRODUCT_NAME_1);
 
         logger.info("verify product is displayed");
-        productPage.verifyProductPageUiElements(PRODUCT_NAME_1);
+        productPage.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
 
         logger.info("click on Add to cart and verify that remove button is displayed");
         productPage.clickOnAddToCart();
