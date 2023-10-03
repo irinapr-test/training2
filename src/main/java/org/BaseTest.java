@@ -1,15 +1,18 @@
-package pages;
+package org;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import pages.LoginPage;
+import static utils.UIPropertiesLoader.getShopURL;
 
 
 public class BaseTest {
 
-    private static final String SHOP_URL = "https://www.saucedemo.com/";
+    private static final String SHOP_URL = getShopURL();
+
 
     public static ChromeOptions options;
     public static WebDriver driver;
@@ -22,17 +25,16 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.get(SHOP_URL);
-
         loginPage = new LoginPage(driver);
-        System.out.println("the shop page is opened " + SHOP_URL);
-
     }
 
-   @AfterClass
-     static void quitBrowser() {
+    @AfterClass
+    public void quitBrowser() {
         driver.quit();
-       System.out.println("test has been executed");
-   }
-
+        System.out.println("test has been executed");
+    }
 }
+
+
+
 

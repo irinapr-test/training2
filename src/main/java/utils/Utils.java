@@ -2,9 +2,9 @@ package utils;
 
 import java.util.Scanner;
 
-public class Utils {
+public class  Utils {
 
-    public Utils() {
+     Utils() {
     }
 
     public static Double extractDouble(String s)

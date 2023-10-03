@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 
 public class ProductPage extends BasePage{
 
@@ -19,7 +19,7 @@ public class ProductPage extends BasePage{
 
     public void verifyProductPageUiElements(String productName){
         find(productItemName).isDisplayed();
-        Assert.assertTrue(find(productItemName).getText().equals(productName));
+        assertTrue(find(productItemName).getText().equals(productName));
     }
 
      public void clickOnAddToCart(){
@@ -35,7 +35,4 @@ public class ProductPage extends BasePage{
     public void clickOnBackToProducts(){
         click(backToProducts);
     }
-
-
-
 }

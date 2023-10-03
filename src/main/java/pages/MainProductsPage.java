@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import utils.Utils;
 
 import java.time.Duration;
@@ -27,11 +27,11 @@ public class MainProductsPage extends BasePage {
 
 
     public void verifyMainProductsPageUiElements(){
-        Assert.assertTrue(find(By.className("app_logo")).getText().equals("Swag Labs"));
-        Assert.assertTrue(find(By.className("title")).getText().equals("Products"));
-        Assert.assertTrue(find(By.id("react-burger-menu-btn")).isDisplayed());
-        Assert.assertTrue(find(By.className("shopping_cart_container")).isDisplayed());
-        Assert.assertTrue(find(By.className("product_sort_container")).isDisplayed());
+        assertTrue(find(By.className("app_logo")).getText().equals("Swag Labs"));
+        assertTrue(find(By.className("title")).getText().equals("Products"));
+        assertTrue(find(By.id("react-burger-menu-btn")).isDisplayed());
+        assertTrue(find(By.className("shopping_cart_container")).isDisplayed());
+        assertTrue(find(By.className("product_sort_container")).isDisplayed());
     }
 
     public Boolean isProductDisplayed(String productName){
@@ -48,7 +48,6 @@ public class MainProductsPage extends BasePage {
 
     public Double getProductPrice(String productName){
         String priceString = find(By.xpath(String.format(PRICE_XPATH, productName))).getText();
-        Utils utils = new Utils();
         Double price = utils.extractDouble(priceString);
         return price;
     }
@@ -58,7 +57,7 @@ public class MainProductsPage extends BasePage {
     }
 
     public void verifyCartBadge(String expectedQuantity){
-        Assert.assertTrue(getCartQuantityValue().equals(expectedQuantity));
+        assertTrue(getCartQuantityValue().equals(expectedQuantity));
     }
 
     public CartPage clickOnCart(){
