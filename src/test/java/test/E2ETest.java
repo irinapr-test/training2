@@ -1,7 +1,7 @@
 package test;
 
 
-import org.BaseTest;
+import core.BaseTest;
 import org.testng.annotations.Test;
 import pages.*;
 import org.slf4j.Logger;
