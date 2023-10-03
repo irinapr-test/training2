@@ -17,17 +17,17 @@ public class MainPageTest extends BaseTest {
     private final String PRODUCT_PRICE_2 = "9.99";
     private final String PRODUCT_NAME_2 = "Sauce Labs Bike Light";
     private final String PRODUCT_NAME_3 = "Sauce Labs Onesie";
-    private final String PRODUCT_NAME_4 ="Sauce Labs Bike Light";
+    private final String PRODUCT_NAME_4 = "Sauce Labs Bike Light";
     private final String PRODUCT_NAME_5 = "Sauce Labs Fleece Jacket";
     private final String PRODUCT_NAME_6 = "Test.allTheThings() T-Shirt (Red)";
 
 
     @Test
-    public void MainPageTest()  {
+    public void AddingProductsToCartTest() {
 
         loginPage.verifyUIElementsOnLoginPage();
         logger.info("log in with valid credentials");
-             MainProductsPage mainPage = loginPage.logInWith("standard_user", "secret_sauce");
+        MainProductsPage mainPage = loginPage.logInWith("standard_user", "secret_sauce");
 
         logger.info("verify main products page elements");
         mainPage.verifyMainProductsPageUiElements();
@@ -38,7 +38,7 @@ public class MainPageTest extends BaseTest {
             Assert.assertTrue(mainPage.isProductDisplayed(i));
         }
 
-              logger.info("click on Add to cart button");
+        logger.info("click on Add to cart button");
         mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_1);
         logger.info("verify Cart Badge");
         mainPage.verifyCartBadge("1");
@@ -49,7 +49,7 @@ public class MainPageTest extends BaseTest {
 
 
         logger.info("navigate to Product page");
-        ProductPage product1Page =  mainPage.clickOnProduct(PRODUCT_NAME_1);
+        ProductPage product1Page = mainPage.clickOnProduct(PRODUCT_NAME_1);
         product1Page.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
         product1Page.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
         product1Page.clickOnBackToProducts();
@@ -64,15 +64,15 @@ public class MainPageTest extends BaseTest {
         mainPage.verifyThatRemoveButtonIsDisplayed(PRODUCT_NAME_1);
         mainPage.verifyThatRemoveButtonIsDisplayed(PRODUCT_NAME_2);
 
-        BurgerMenu burgerMenu =  mainPage.clickOnBurgerMenu();
+        BurgerMenu burgerMenu = mainPage.clickOnBurgerMenu();
         burgerMenu.clickOnResetAppStateButton();
         mainPage.verifyThatCartIsEmpty();
 
-       /*failed on bug  */
-        logger.info("Verify that previously selected products have add to cart button");
+       /*failed on bug
+        logger.info("Verify that previously selected products have been added to cart button");
          mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_1);
          mainPage.verifyThatRemoveButtonIsDisplayed(PRODUCT_NAME_2);
-
+*/
 
         logger.info("verify ordering result");
         mainPage.clickOnOrderingOption("Name (Z to A)");

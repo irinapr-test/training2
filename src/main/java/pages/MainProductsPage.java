@@ -18,6 +18,8 @@ public class MainProductsPage extends BasePage {
     private static final String REMOVE_BUTTON_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Remove')]";
     private static final String PRICE_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::div[@class='inventory_item_price']";
     private static final String PRODUCT_LINK_XPATH = "//div[contains(text(),'%s')]/ancestor::a[@id='item_4_title_link']";
+    private static final String SORT_OPTION = "//option[contains(text(),'%s')]";
+    private By sortContainer = By.className("product_sort_container");
     private By shopping_cart_container = By.className("shopping_cart_container");
     private By burgerMenuButton = By.id("react-burger-menu-btn");
 
@@ -102,6 +104,6 @@ public class MainProductsPage extends BasePage {
 
     public void clickOnOrderingOption(String option){
         clickOnOrdering();
-        click(By.xpath(String.format(sortOption,option)));
+        click(By.xpath(String.format(SORT_OPTION,option)));
     }
 }
