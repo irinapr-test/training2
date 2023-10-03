@@ -12,8 +12,6 @@ import static utils.UIPropertiesLoader.getShopURL;
 public class BaseTest {
 
     private static final String SHOP_URL = getShopURL();
-
-
     public static ChromeOptions options;
     public static WebDriver driver;
     protected LoginPage loginPage;

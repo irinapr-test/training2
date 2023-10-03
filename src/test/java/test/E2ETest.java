@@ -18,7 +18,7 @@ public class E2ETest extends BaseTest {
     private final String PRODUCT_NAME_3 = "Sauce Labs Bolt T-Shirt";
 
     @Test
-    public void E2E() {
+    public void E2ETest() {
 
         logger.info("verify login page elements");
         loginPage.verifyUIElementsOnLoginPage();
