@@ -3,13 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-
-import java.time.Duration;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 
 public abstract class BasePage {
     protected WebDriver driver;
@@ -44,6 +38,4 @@ public abstract class BasePage {
         find(locator).clear();
 
     }
-
-
 }
