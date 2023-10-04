@@ -7,7 +7,7 @@ import pages.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+//TODO all tests should have Test at the end
 public class E2ETest extends BaseTest {
     private final Logger logger = LoggerFactory.getLogger(E2ETest.class);
 
@@ -19,7 +19,7 @@ public class E2ETest extends BaseTest {
 
     @Test
     public void E2ETest() {
-
+     //TODO let's remove all the commented lines and implement a logger, like log4j, and log that instead.
         logger.info("verify login page elements");
         loginPage.verifyUIElementsOnLoginPage();
 
@@ -72,7 +72,7 @@ public class E2ETest extends BaseTest {
         cartPage.clickOnContinueShoppingButton();
         mainPage.verifyMainProductsPageUiElements();
 
-        logger.info("go back to cart");
+        //go back to cart
         mainPage.clickOnCart();
         logger.info("click on checkout button and verify Checkout: Your Information UI elements");
         CheckoutPage checkoutPage = cartPage.clickOnCheckoutShoppingButton();

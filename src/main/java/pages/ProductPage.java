@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import static org.testng.Assert.*;
 import static utils.Utils.extractDouble;
 
+//TODO let's import the assertions statically, so we can just call assertEquals(), assertTrue();
+// this should be applied for all Pages
+
 public class ProductPage extends BasePage{
 
     private By productItemName = By.xpath("//div[contains(@class, 'name')]");

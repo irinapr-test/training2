@@ -47,7 +47,6 @@ public class MainPageTest extends BaseTest {
         logger.info("verify Cart Badge");
         mainPage.verifyCartBadge("2");
 
-
         logger.info("navigate to Product page");
         ProductPage product1Page = mainPage.clickOnProduct(PRODUCT_NAME_1);
         product1Page.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
