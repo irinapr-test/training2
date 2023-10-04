@@ -19,5 +19,9 @@ public class BurgerMenu extends BasePage{
          return new LoginPage(driver);
     }
 
+    public LoginPage clickOnResetAppStateButton (){
+        click(By.xpath(String.format(BURGER_MENU_BUTTON_XPATH, "Reset App State")));
+        return new LoginPage(driver);
+    }
 
 }

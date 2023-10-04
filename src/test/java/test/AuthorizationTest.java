@@ -1,68 +1,69 @@
 package test;
 
-import org.testng.Assert;
+import core.BaseTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import static org.testng.Assert.*;
+import static utils.UIPropertiesLoader.*;
+import static utils.UIPropertiesLoader.getValidationMessage;
+
 import org.testng.annotations.Test;
-import pages.BaseTest;
 import pages.MainProductsPage;
 
 public class AuthorizationTest extends BaseTest {
-    public final String USERNAME1 = "standard_user";
-    public final String USERNAME2 = "locked_out_user";
-
-    public final String PASSWORD = "secret_sauce";
+    public final String USERNAME1 = getUserProperties("USERNAME1");
+    public final String USERNAME2 = getUserProperties("USERNAME2");
+    private final Logger logger = LoggerFactory.getLogger(E2ETest.class);
+    public final String PASSWORD = getUserProperties("PASSWORD");
 
 
     @Test
     public void authorizationTest() {
-        //verify UI elements
+
+        logger.info("verify UI elements");
         loginPage.verifyUIElementsOnLoginPage();
 
-        //login without username and password
+        logger.info("login without username and passwords");
         loginPage.clickOnLoginButton();
-         Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Username is required");
+        assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("USERNAME_REQUIRED"));
 
-        //login without username
+        logger.info("login without username");
         loginPage.closeErrorMessage();
         loginPage.setPassword(PASSWORD);
         loginPage.clickOnLoginButton();
-        // somehow it's possible to log in
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Username is required");
+        logger.info("somehow it's possible to log in");
+        assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("USERNAME_REQUIRED"));
 
-
-        //log in with valid credentials
+        logger.info("log in with valid credentials");
         MainProductsPage mainPage = loginPage.logInWith(USERNAME1, PASSWORD);
-        //verify main products page elements
+        logger.info("verify main products page elements");
         mainPage.verifyMainProductsPageUiElements();
-        //logout
+
+        logger.info("logout");
         mainPage.logout();
         loginPage.verifyUIElementsOnLoginPage();
 
-        //login without password
+
+        logger.info("login without password");
         loginPage.setUserName(USERNAME1);
         loginPage.clickOnLoginButton();
-        //bug if it 's on line 31
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Password is required");
+        assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("PASSWORD_REQUIRED"));
 
-        //login with valid username and not valid password
+
+        logger.info("login with valid username and not valid password");
         loginPage.logInWith(USERNAME1, "RANDOM");
         loginPage.getErrorMessageForLogIn();
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Username and password do not match any user in this service", "error is not displayed");
+        assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("USERNAME_PASSWORD_REQURIED"), "error is not displayed");
 
-        //login with valid username and password in UPPERCASE
+        logger.info("login with valid username and password in UPPERCASE");
         loginPage.logInWith(USERNAME1.toUpperCase(), PASSWORD.toUpperCase() );
         loginPage.getErrorMessageForLogIn();
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Username and password do not match any user in this service", "error is not displayed");
+        assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("USERNAME_PASSWORD_DOES_NOT_MATCH"), "error is not displayed");
 
-        //login with locked  username and valid password
+        logger.info("login with locked  username and valid password");
         loginPage.logInWith(USERNAME2, PASSWORD);
         loginPage.getErrorMessageForLogIn();
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Sorry, this user has been locked out.");
-
-        //login with locked  username and valid password
-        loginPage.logInWith(USERNAME2, PASSWORD);
-        loginPage.getErrorMessageForLogIn();
-        Assert.assertEquals(loginPage.getErrorMessageForLogIn(), "Epic sadface: Sorry, this user has been locked out.");
-
+        assertEquals(loginPage.getErrorMessageForLogIn(),  getValidationMessage("USER_LOCKED"));
     }
 
 
