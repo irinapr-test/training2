@@ -22,8 +22,8 @@ public class BaseTest {
     //TODO let's see if we can find a solution for chromedriver to be included in the project
     //     either way, it should have a relative path to the project, not something with c:\\users\\ etc..
     @BeforeClass
-    public void setUp()  {
-          System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
