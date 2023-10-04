@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+//TODO let's import the assertions statically, so we can just call assertEquals(), assertTrue();
+// this should be applied for all Pages
 public class ProductPage extends BasePage{
 
     private By productItemName = By.xpath("//div[contains(@class, 'name')]");
@@ -19,6 +21,7 @@ public class ProductPage extends BasePage{
 
     public void verifyProductPageUiElements(String productName){
         find(productItemName).isDisplayed();
+        //TODO we could use assertEquals(productName, find(productItemName).getText());
         Assert.assertTrue(find(productItemName).getText().equals(productName));
     }
 
