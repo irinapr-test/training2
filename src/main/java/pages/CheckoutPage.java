@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.*;
+import static utils.Utils.extractDouble;
 
 import utils.Utils;
 
@@ -72,15 +73,15 @@ public class CheckoutPage extends BasePage {
 
     public void verifyItemTotal(String expectedItemTotal) {
         String priceString = find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH, "Item total:"))).getText();
-        Double price = utils.extractDouble(priceString);
+        Double price = extractDouble(priceString);
         assertEquals(expectedItemTotal, price.toString());
     }
 
     public void verifyTotalPrice(Double expectedItemTotal) {
         String getActualTotal = find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH, "Total:"))).getText();
-        Double actualTotal = utils.extractDouble(getActualTotal);
+        Double actualTotal = extractDouble(getActualTotal);
         String getActualTax = find(By.xpath(String.format(SUMMARY_INFO_ITEM_XPATH, "Tax: "))).getText();
-        Double taxprice = utils.extractDouble(getActualTax);
+        Double taxprice = extractDouble(getActualTax);
         assertEquals(taxprice + expectedItemTotal, actualTotal);
     }
 

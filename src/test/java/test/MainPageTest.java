@@ -14,7 +14,6 @@ public class MainPageTest extends BaseTest {
 
     private final String PRODUCT_NAME_1 = "Sauce Labs Backpack";
     private final String PRODUCT_PRICE_1 = "29.99";
-    private final String PRODUCT_PRICE_2 = "9.99";
     private final String PRODUCT_NAME_2 = "Sauce Labs Bike Light";
     private final String PRODUCT_NAME_3 = "Sauce Labs Onesie";
     private final String PRODUCT_NAME_4 = "Sauce Labs Bike Light";
@@ -50,14 +49,13 @@ public class MainPageTest extends BaseTest {
         logger.info("navigate to Product page");
         ProductPage product1Page = mainPage.clickOnProduct(PRODUCT_NAME_1);
         product1Page.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
-        product1Page.verifyProductPageUiElements(PRODUCT_NAME_1, PRODUCT_PRICE_1);
         product1Page.clickOnBackToProducts();
 
         logger.info("logout");
         mainPage.logout();
         loginPage.verifyUIElementsOnLoginPage();
 
-        logger.info("log in with valid credentials and verify that chose is saved");
+        logger.info("log in with valid credentials and verify that the chose is saved");
         loginPage.logInWith("standard_user", "secret_sauce");
         mainPage.verifyCartBadge("2");
         mainPage.verifyThatRemoveButtonIsDisplayed(PRODUCT_NAME_1);
@@ -68,7 +66,7 @@ public class MainPageTest extends BaseTest {
         mainPage.verifyThatCartIsEmpty();
 
        /*failed on bug
-        logger.info("Verify that previously selected products have been added to cart button");
+        logger.info("Verify that previously selected products have been removed from cart");
          mainPage.clickOnAddToCartButtonForItem(PRODUCT_NAME_1);
          mainPage.verifyThatRemoveButtonIsDisplayed(PRODUCT_NAME_2);
 */

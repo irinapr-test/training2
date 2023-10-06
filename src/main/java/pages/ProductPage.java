@@ -45,7 +45,7 @@ public class ProductPage extends BasePage{
     }
 
     public Double getProductPrice(String productName){
-        String priceString = find(By.xpath(String.format(PRICE_XPATH, productName))).getText();
+        String priceString = find(By.xpath(String.format(PRICE_XPATH))).getText();
         Double price = extractDouble(priceString);
         return price;
     }

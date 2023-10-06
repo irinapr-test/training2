@@ -5,15 +5,10 @@ import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.*;
 import static utils.Utils.extractDouble;
-
-import utils.Utils;
-
 import java.time.Duration;
 
 
 public class MainProductsPage extends BasePage {
-    private Utils utils;
-
     private static final String PRODUCT_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item']";
     private static final String ADD_TO_CART_BUTTON_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Add to cart')]";
     private static final String REMOVE_BUTTON_XPATH = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item_description']/descendant::button[contains(text(),'Remove')]";

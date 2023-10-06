@@ -49,7 +49,6 @@ public class AuthorizationTest extends BaseTest {
         loginPage.clickOnLoginButton();
         assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("PASSWORD_REQUIRED"));
 
-
         logger.info("login with valid username and not valid password");
         loginPage.logInWith(USERNAME1, "RANDOM");
         loginPage.getErrorMessageForLogIn();

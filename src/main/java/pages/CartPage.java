@@ -3,13 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static org.testng.Assert.*;
-
-import utils.Utils;
+import static utils.Utils.extractDouble;
 
 
 public class CartPage extends BasePage {
-    private Utils utils;
-
     private By continueShoppingButton = By.id("continue-shopping");
     private By checkoutButton = By.id("checkout");
     private static final String CART_ITEM_NAME_XPATH = "//div[@class='inventory_item_name' and text()='%s']";
@@ -30,7 +27,7 @@ public class CartPage extends BasePage {
 
     public Double returnItemPriceOnCart(String itemName) {
         String priceString = driver.findElement(By.xpath(String.format(PRICE_XPATH_ON_CART, itemName))).getText();
-        Double price = utils.extractDouble(priceString);
+        Double price = extractDouble(priceString);
         return price;
     }
 
