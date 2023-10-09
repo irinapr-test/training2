@@ -1,0 +1,11 @@
+06.10.2023
+- Add option to execute tests on different browsers.
+- Add screenshot functionality in framework. Add screenshots for verifications methods.
+- Add TestNG Listener to do a screenshot on Test Failure.
+- Add cucumber and write those tests also in Cucumber.
+- Add Serenity Reports for test execution. this should help https://qaautomation.expert/2021/09/06/serenity-report-for-web-application-with-cucumber6-and-junit/
+
+
+future:
+- jenkins pipeline.
+- add API functionality to our project, using RestAssured.
