@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.TakeScreenshot;
 
+import static utils.UIPropertiesLoader.getUserProperties;
+
 //TODO all tests should have Test at the end
 public class E2ETest extends BaseTest {
     private final Logger logger = LoggerFactory.getLogger(E2ETest.class);
@@ -19,25 +21,29 @@ public class E2ETest extends BaseTest {
     private final String PRODUCT_NAME_2 = "Sauce Labs Bike Light";
     private final String PRODUCT_NAME_3 = "Sauce Labs Bolt T-Shirt";
     private TakeScreenshot takeScreenshot;
+    public final String USERNAME = getUserProperties("USERNAME1");
+    public final String PASSWORD = getUserProperties("PASSWORD");
+
+
 
     @BeforeTest
     public void setup() {
         takeScreenshot = new TakeScreenshot();
-
     }
 
     @Test
     public void E2ETest() {
-     //TODO let's remove all the commented lines and implement a logger, like log4j, and log that instead.
         logger.info("verify login page elements");
         loginPage.verifyUIElementsOnLoginPage();
-        takeScreenshot.takeScreenShot();
+        takeScreenshot.takeScreenShot("step1");
 
         logger.info("log in with valid credentials");
-        MainProductsPage mainPage = loginPage.logInWith("standard_user", "secret_sauce");
+        MainProductsPage mainPage = loginPage.logInWith(USERNAME, PASSWORD);
+        takeScreenshot.takeScreenShot("step2");
 
         logger.info("main products page elements");
         mainPage.verifyMainProductsPageUiElements();
+        takeScreenshot.takeScreenShot("step3");
 
         logger.info("click on product item");
         ProductPage productPage = mainPage.clickOnProduct(PRODUCT_NAME_1);

@@ -16,7 +16,6 @@ public class AuthorizationTest extends BaseTest {
     private final Logger logger = LoggerFactory.getLogger(E2ETest.class);
     public final String PASSWORD = getUserProperties("PASSWORD");
 
-
     @Test
     public void authorizationTest() {
 
@@ -35,7 +34,7 @@ public class AuthorizationTest extends BaseTest {
         assertEquals(loginPage.getErrorMessageForLogIn(), getValidationMessage("USERNAME_REQUIRED"));
 
         logger.info("log in with valid credentials");
-        MainProductsPage mainPage = loginPage.logInWith(USERNAME1, PASSWORD);
+        MainProductsPage mainPage = loginPage.logInWith(USERNAME1, "PASSWORD");
         logger.info("verify main products page elements");
         mainPage.verifyMainProductsPageUiElements();
 

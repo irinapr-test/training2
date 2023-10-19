@@ -10,16 +10,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
+import utils.TakeScreenshot;
 
 import static utils.UIPropertiesLoader.getShopURL;
+import static utils.UIPropertiesLoader.getUserProperties;
 
-public class crossBrowserE2ETest {
+public class crossBrowserE2ETest implements ITestListener {
     private static final String SHOP_URL = getShopURL();
     protected LoginPage loginPage;
     public static WebDriver driver;
-
+    private TakeScreenshot takeScreenshot;
     private final Logger logger = LoggerFactory.getLogger(test.E2ETest.class);
 
     private final String PRODUCT_NAME_1 = "Sauce Labs Backpack";
@@ -27,10 +31,15 @@ public class crossBrowserE2ETest {
     private final String PRODUCT_PRICE_2 = "9.99";
     private final String PRODUCT_NAME_2 = "Sauce Labs Bike Light";
     private final String PRODUCT_NAME_3 = "Sauce Labs Bolt T-Shirt";
+    public final String USERNAME = getUserProperties("USERNAME1");
+
+    public final String PASSWORD = "PASSWORD";
+
 
     @BeforeTest
     @Parameters("browser")
     public void initialize(String browser) {
+        takeScreenshot = new TakeScreenshot();
         if(browser.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
             driver = new FirefoxDriver();
@@ -57,7 +66,7 @@ public class crossBrowserE2ETest {
         loginPage.verifyUIElementsOnLoginPage();
 
         logger.info("log in with valid credentials");
-        MainProductsPage mainPage = loginPage.logInWith("standard_user", "secret_sauce");
+        MainProductsPage mainPage = loginPage.logInWith(USERNAME, PASSWORD);
 
         logger.info("main products page elements");
         mainPage.verifyMainProductsPageUiElements();
@@ -145,5 +154,20 @@ public class crossBrowserE2ETest {
         System.out.println("test has been executed");
     }
 
+    @Override
+    public void onTestFailure(ITestResult result){
+        String testName = result.getName();
+        System.out.println(testName + " failed");
+        WebDriver driver = null;
+        try {
+            driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
+                                       .get(result.getInstance());
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        takeScreenshot.takeScreenShot(result.getName());
+    }
 
 }
