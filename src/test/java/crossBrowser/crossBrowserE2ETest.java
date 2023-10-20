@@ -1,20 +1,23 @@
 package crossBrowser;
 
-import core.BaseTest;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
-import utils.TakeScreenshot;
+
+import java.io.File;
+import java.io.IOException;
 
 import static utils.UIPropertiesLoader.getShopURL;
 import static utils.UIPropertiesLoader.getUserProperties;
@@ -23,7 +26,6 @@ public class crossBrowserE2ETest implements ITestListener {
     private static final String SHOP_URL = getShopURL();
     protected LoginPage loginPage;
     public static WebDriver driver;
-    private TakeScreenshot takeScreenshot;
     private final Logger logger = LoggerFactory.getLogger(test.E2ETest.class);
 
     private final String PRODUCT_NAME_1 = "Sauce Labs Backpack";
@@ -39,7 +41,6 @@ public class crossBrowserE2ETest implements ITestListener {
     @BeforeTest
     @Parameters("browser")
     public void initialize(String browser) {
-        takeScreenshot = new TakeScreenshot();
         if(browser.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
             driver = new FirefoxDriver();
@@ -64,9 +65,11 @@ public class crossBrowserE2ETest implements ITestListener {
         //TODO let's remove all the commented lines and implement a logger, like log4j, and log that instead.
         logger.info("verify login page elements");
         loginPage.verifyUIElementsOnLoginPage();
+        takeScreenShot("step3");
 
         logger.info("log in with valid credentials");
-        MainProductsPage mainPage = loginPage.logInWith(USERNAME, PASSWORD);
+        MainProductsPage mainPage = loginPage.logInWith(USERNAME, "PASSWORD");
+        takeScreenShot("step3");
 
         logger.info("main products page elements");
         mainPage.verifyMainProductsPageUiElements();
@@ -167,7 +170,18 @@ public class crossBrowserE2ETest implements ITestListener {
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
-        takeScreenshot.takeScreenShot(result.getName());
+        takeScreenShot(result.getName());
+    }
+
+    public void takeScreenShot(String stepName){
+        TakesScreenshot scrShot =((TakesScreenshot)driver);
+        File SourceFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile=new File("D:\\JAVA\\New\\"+ stepName + ".png");
+        try {
+            FileUtils.copyFile(SourceFile, DestFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

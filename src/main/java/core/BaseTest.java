@@ -1,15 +1,20 @@
 package core;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pages.LoginPage;
+
+import java.io.File;
+import java.io.IOException;
 
 import static utils.UIPropertiesLoader.getShopURL;
 
@@ -20,7 +25,7 @@ public class BaseTest {
     public static WebDriver driver;
     protected LoginPage loginPage;
 
-     @BeforeClass
+   @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         options = new ChromeOptions();
@@ -34,6 +39,28 @@ public class BaseTest {
     public void quitBrowser() {
         driver.quit();
         System.out.println("test has been executed");
+    }
+
+    @AfterMethod
+    public void takeScreenshotForFailures(ITestResult testResult){
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        File source = screenshot.getScreenshotAs(OutputType.FILE);
+        if(ITestResult.FAILURE == testResult.getStatus()) {
+            File destination = new File("D:\\JAVA\\New\\" + testResult.getName() + "_Failed.png");
+            try {
+                FileHandler.copy(source, destination);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else if(ITestResult.SUCCESS == testResult.getStatus()) {
+            File destination = new File("D:\\JAVA\\New\\" + testResult.getName() + "_Success.png");
+            try {
+                FileHandler.copy(source, destination);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+
+            }
+        }
     }
 }
 

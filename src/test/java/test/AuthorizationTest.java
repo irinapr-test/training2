@@ -1,14 +1,21 @@
 package test;
 
 import core.BaseTest;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static org.testng.Assert.*;
 import static utils.UIPropertiesLoader.*;
 import static utils.UIPropertiesLoader.getValidationMessage;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.MainProductsPage;
+
+import java.io.File;
+import java.io.IOException;
 
 public class AuthorizationTest extends BaseTest {
     public final String USERNAME1 = getUserProperties("USERNAME1");
@@ -63,6 +70,5 @@ public class AuthorizationTest extends BaseTest {
         loginPage.getErrorMessageForLogIn();
         assertEquals(loginPage.getErrorMessageForLogIn(),  getValidationMessage("USER_LOCKED"));
     }
-
 
 }

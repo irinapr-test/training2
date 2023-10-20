@@ -20,7 +20,6 @@ public class MainPageTest extends BaseTest {
     private final String PRODUCT_NAME_5 = "Sauce Labs Fleece Jacket";
     private final String PRODUCT_NAME_6 = "Test.allTheThings() T-Shirt (Red)";
 
-
     @Test
     public void AddingProductsToCartTest() {
 
