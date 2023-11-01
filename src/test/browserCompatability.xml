@@ -4,19 +4,19 @@
     <test thread-count = "5" name="crossBrowserE2ETestChrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="crossBrowser.crossBrowserE2ETest"/>
+            <class name="test.crossBrowser.crossBrowserE2ETest"/>
         </classes>
     </test>
     <test thread-count = "5" name="crossBrowserE2ETestFF">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="crossBrowser.crossBrowserE2ETest"/>
+            <class name="test.crossBrowser.crossBrowserE2ETest"/>
         </classes>
     </test>
     <test thread-count = "5" name="crossBrowserE2ETestEdge">
         <parameter name="browser" value="edge"></parameter>
         <classes>
-            <class name="crossBrowser.crossBrowserE2ETest"/>
+            <class name="test.crossBrowser.crossBrowserE2ETest"/>
         </classes>
     </test>
 </suite>

@@ -1,4 +1,4 @@
-package crossBrowser;
+package test.crossBrowser;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;

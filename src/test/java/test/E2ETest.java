@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import static utils.UIPropertiesLoader.getUserProperties;
 
-//TODO all tests should have Test at the end
 public class E2ETest extends BaseTest {
     private final Logger logger = LoggerFactory.getLogger(E2ETest.class);
 
