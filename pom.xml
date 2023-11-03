@@ -53,6 +53,14 @@
             <version>2.17.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>7.5.0</version>
+        </dependency>
+
+
 
 
     </dependencies>
