@@ -1,4 +1,4 @@
-package test.cucumber.stepDefinitions;
+package test.cucumber;
 
 import core.BaseTest;
 import cucumberClases.CredentialsCucumber;
