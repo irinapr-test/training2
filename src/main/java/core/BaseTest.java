@@ -25,13 +25,13 @@ public class BaseTest {
     public LoginPage loginPage;
 
    @BeforeClass
-    public LoginPage setUp() {
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.get(SHOP_URL);
-        return loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @AfterClass

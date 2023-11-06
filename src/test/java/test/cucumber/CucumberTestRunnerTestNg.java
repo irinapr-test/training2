@@ -4,9 +4,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features="src/test/java/resources/featureFile",
+        features="src/test/java/resources/featureFile/E2E.feature",
         monochrome= true,
-        glue={"cucumber"}
+        glue={"test.cucumber.E2EStepDefinitionImplementation"}
        )
 public class CucumberTestRunnerTestNg extends AbstractTestNGCucumberTests {
 

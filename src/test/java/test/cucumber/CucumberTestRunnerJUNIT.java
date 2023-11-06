@@ -13,6 +13,8 @@ import io.cucumber.junit.Cucumber;
 public class CucumberTestRunnerJUNIT {
 
        /*
-       java.lang.AbstractMethodError: Receiver class io.cucumber.junit.JUnitCucumberOptionsProvider$JunitCucumberOptions does not define or inherit an implementation of the resolved method 'abstract boolean strict()' of interface io.cucumber.core.options.CucumberOptionsAnnotationParser$CucumberOptions.
+       java.lang.AbstractMethodError: Receiver class io.cucumber.junit.JUnitCucumberOptionsProvider$JunitCucumberOptions
+       does not define or inherit an implementation of the resolved method 'abstract boolean strict()'
+       of interface io.cucumber.core.options.CucumberOptionsAnnotationParser$CucumberOptions.
        */
 }
